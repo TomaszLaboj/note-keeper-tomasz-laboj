@@ -1,0 +1,275 @@
+body {
+  background-color: #fcfcfc;
+  font-family: "DejaVu Sans", sans-serif;
+}
+
+.note-container {
+  margin: 32px auto 16px auto;
+  padding: 12px 16px;
+
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+
+  width: 600px;
+  max-width: 90%;
+  max-height: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+}
+
+.note-container:focus-within {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.title-input,
+.description-input,
+.date-input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+  resize: none;
+
+  font-family: inherit;
+  background: transparent;
+}
+
+.date-input {
+  width: 20%;
+  display: inline-block;
+}
+
+.description-input {
+  border-bottom: 1px solid #dadce0;
+  min-height: 5rem;
+  transition: min-height 0.25s ease;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  height: 2rem;
+  width: 4rem;
+  font-weight: bold;
+  float: right;
+}
+
+.collapsed-input {
+  color: #a9a9a9;
+}
+
+.notes-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.notes-list-container-sortable {
+  background: lightblue;
+}
+
+.grid-container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  padding: 16px;
+  max-width: 1600px;
+  margin: 100px auto;
+}
+
+.archived-button {
+  border: none;
+  background: none;
+  font-weight: bold;
+}
+
+.archived-button:hover {
+  background: #daddd8;
+  border-radius: 8px;
+}
+
+.archive-button-tooltip,
+.delete-button-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.archive-button-tooltip-text,
+.delete-button-tooltip-text {
+  visibility: hidden;
+  width: 130px;
+  background-color: black;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+
+.archive-button-tooltip:hover .archive-button-tooltip-text,
+.delete-button-tooltip:hover .delete-button-tooltip-text {
+  visibility: visible;
+}
+
+.task {
+  margin: 4px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  max-height: 500px;
+}
+
+.task-title {
+  font-weight: bold;
+}
+
+.task-description {
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  max-height: fit-content;
+}
+
+.task-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #666;
+}
+
+.task-footer-date {
+  display: inline-block;
+  font-size: small;
+  font-weight: lighter;
+}
+
+.task-footer-archive-icon-button {
+  width: 2.6rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  font-size: larger;
+}
+
+.task-footer-bin-icon-button {
+  width: 2.6rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  font-size: larger;
+}
+
+.task-footer-bin-icon-button:hover,
+.task-footer-archive-icon-button:hover {
+  background: #daddd8;
+  border-radius: 8px;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-editor {
+  margin: auto;
+  padding: 12px 16px;
+  background-color: #fcfcfc;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+
+  width: 600px;
+  max-width: 90%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 100rem;
+}
+
+.task-editor-title {
+  width: 70%;
+  border: none;
+  outline: none;
+  resize: none;
+  display: inline-block;
+  font-family: inherit;
+  font-weight: bold;
+  word-wrap: break-word;
+  background: transparent;
+}
+
+.task-editor-date-added {
+  font-weight: lighter;
+  font-size: small;
+  float: right;
+  background: transparent;
+  border: none;
+}
+
+.task-editor-description {
+  width: 100%;
+
+  border: none;
+  outline: none;
+  resize: none;
+
+  font-family: inherit;
+  background: transparent;
+  height: fit-content;
+}
+
+.task-editor-footer-icon-button {
+  margin-top: 5px;
+  background: none;
+  border: none;
+}
+.task-editor-footer-icon-button:hover {
+  background: #daddd8;
+  border-radius: 8px;
+}
+
+.task-editor-footer-bin-and-close-buttons {
+  float: right;
+}
+
+.oneTask {
+  display: inline-flex;
+}
+
+.cells {
+  background-color: azure;
+  border-style: solid;
+  border-width: 1px;
+  min-width: 150px;
+  margin-left: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.checkbox {
+  font-size: 10px;
+}
+
+.button {
+  margin-left: 20px;
+  font-size: 10px;
+}

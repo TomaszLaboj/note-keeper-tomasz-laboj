@@ -1,0 +1,5 @@
+.header-container {
+  padding: 1rem;
+  min-height: 1vh;
+  font-size: calc(10px + 2vmin);
+}
