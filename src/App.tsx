@@ -70,8 +70,12 @@ function App() {
     status: "In progress" | "Done"
   ) => {
     // to do : refactor , to send just id and update in the back end
+    console.log('from handle update status: ', taskId, status);
 
-    const task = listOfActiveTasks.find((task) => task.id === taskId);
+    let task = listOfActiveTasks.find((task) => task.id === taskId);
+    if (!task) {
+      task = listOfArchivedTasks.find((task) => task.id === taskId);
+    }
     console.log(task);
     if (task) {
       axios

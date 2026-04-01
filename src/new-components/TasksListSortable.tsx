@@ -198,9 +198,9 @@ const TasksListSortable = ({
             })}
           </Grid>
         </SortableContext>
-                <DragOverlay adjustScale style={{ transformOrigin: '0 0 ' }}>
-                        {activeId ? findTask(parseInt(activeId.toString()), listOfTasks, deleteTask, updateTaskStatus): null}
-                    </DragOverlay>
+        <DragOverlay adjustScale style={{ transformOrigin: '0 0 ' }}>
+              {activeId ? findTask(parseInt(activeId.toString()), listOfTasks, deleteTask, updateTaskStatus): null}
+        </DragOverlay>
       </DndContext>
 
       <div className="notes-list-container-sortable"></div>
