@@ -9,6 +9,7 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
+  DragOverlay,
   type DragStartEvent,
   type DragEndEvent,
   type UniqueIdentifier,
@@ -21,6 +22,7 @@ import {
 } from "@dnd-kit/sortable";
 import Grid from "./Grid";
 import SortableItemForGrid from "./SortableItemForGrid";
+import { findTask } from "./ArchivedTasksList";
 
 interface ListOfTasksProps {
   listOfTasks: OneTask[];
@@ -196,6 +198,9 @@ const TasksListSortable = ({
             })}
           </Grid>
         </SortableContext>
+                <DragOverlay adjustScale style={{ transformOrigin: '0 0 ' }}>
+                        {activeId ? findTask(parseInt(activeId.toString()), listOfTasks, deleteTask, updateTaskStatus): null}
+                    </DragOverlay>
       </DndContext>
 
       <div className="notes-list-container-sortable"></div>

@@ -7,7 +7,7 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
-  // DragOverlay,
+  DragOverlay,
   type DragStartEvent,
   type DragEndEvent,
   type UniqueIdentifier,
@@ -21,6 +21,28 @@ import {
 import Grid from "./Grid";
 import SortableItemForGrid from "./SortableItemForGrid";
 import ArchivedTaskPreview from "./ArchivedTaskPreview";
+import Item from "./Item";
+
+  export const findTask = (taskId: number | undefined, tasks: OneTask[], deleteTask: (taskId: number | undefined) => void, updateTaskStatus: (taskId: number | undefined, status: "In progress" | "Done") => void) => {
+    const task = tasks.find((task) => task.id === taskId);
+    if (task) {
+      return (
+        <Item
+        id={taskId ? taskId.toString() : ""}
+        title={task.title}
+        description={task.description}
+        dateAdded={new Date(task.date_added).toLocaleDateString()}
+        dueDate={
+          task.due_date && new Date(task.due_date).toLocaleDateString()
+        }
+        status={task.status}
+        deleteTask={deleteTask}
+        updateStatus={updateTaskStatus}
+        />
+      )
+    }
+    return null;
+  }
 
 interface ListOfTasksProps {
   listOfTasks: OneTask[];
@@ -105,6 +127,7 @@ const ArchivedTasksList = ({
     setHighlightedTask(undefined);
   };
 
+
   return (
     <>
       <DndContext
@@ -141,9 +164,9 @@ const ArchivedTasksList = ({
             })}
           </Grid>
         </SortableContext>
-        {/* <DragOverlay adjustScale style={{ transformOrigin: '0 0 ' }}>
-                {activeId ? <Item id={activeId.toString()} isDragging /> : null}
-            </DragOverlay> */}
+        <DragOverlay adjustScale style={{ transformOrigin: '0 0 ' }}>
+                {activeId ? findTask(parseInt(activeId.toString()), listOfTasks, deleteTask, updateTaskStatus): null}
+            </DragOverlay>
       </DndContext>
 
       <div className="notes-list-container-sortable"></div>
