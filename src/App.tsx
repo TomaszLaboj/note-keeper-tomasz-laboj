@@ -17,7 +17,9 @@ export type TitleAndDescription = {
 
 function App() {
   const today = new Date().toISOString().substring(0, 10);
-  const [listOfTasks, setListOfTasks] = useState<OneTask[]>([]);
+  const [listOfActiveTasks, setListOfActiveTasks] = useState<OneTask[]>([]);
+  const [listOfArchivedTasks, setListOfArchivedTasks] = useState<OneTask[]>([]);
+  console.log(listOfActiveTasks);
   const [titleAndDescription, setTitleAndDescription] =
     useState<TitleAndDescription>({ title: "", description: "" });
   const [dueDate, setDueDate] = useState<string>("");
@@ -25,9 +27,12 @@ function App() {
   const getTasksList = () => {
     axios
       .get(`${url}/todos/`)
-      .then((response) => setListOfTasks(response.data));
+      .then((response) => {
+        setListOfActiveTasks(returnActiveTasks(response.data))
+        setListOfArchivedTasks(returnArchivedTasks(response.data))
+  });
   };
-
+  
   useEffect(() => {
     getTasksList();
   }, []);
@@ -66,7 +71,7 @@ function App() {
   ) => {
     // to do : refactor , to send just id and update in the back end
 
-    const task = listOfTasks.find((task) => task.id === taskId);
+    const task = listOfActiveTasks.find((task) => task.id === taskId);
     console.log(task);
     if (task) {
       axios
@@ -131,10 +136,11 @@ function App() {
       />
       <br />
       <TasksListSortable
-        listOfTasks={returnActiveTasks(listOfTasks)}
+        listOfTasks={listOfActiveTasks}
         updateTask={handleUpdateTask}
         deleteTask={handleDeleteTask}
         updateStatus={handleUpdateStatus}
+        setTasksList={setListOfActiveTasks}
       />
       <hr />
       <button
@@ -146,9 +152,10 @@ function App() {
 
       {showArchived && (
         <ArchivedTasksList
-          listOfTasks={returnArchivedTasks(listOfTasks)}
+          listOfTasks={returnArchivedTasks(listOfArchivedTasks)}
           deleteTask={handleDeleteTask}
           updateStatus={handleUpdateStatus}
+          setTasksList={setListOfArchivedTasks}
         />
       )}
       <Footer />

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { type OneTask } from "../new-components/oneTask";
 import TaskEditor from "./TaskEditor";
 import isEqual from "lodash.isequal";
@@ -30,6 +30,7 @@ interface ListOfTasksProps {
     taskId: number | undefined,
     status: "In progress" | "Done"
   ) => void;
+  setTasksList: React.Dispatch<React.SetStateAction<OneTask[]>>;
 }
 
 const TasksListSortable = ({
@@ -37,13 +38,8 @@ const TasksListSortable = ({
   updateTask,
   deleteTask,
   updateStatus,
+  setTasksList,
 }: ListOfTasksProps) => {
-  const [tasksList, setTasksList] = useState<OneTask[]>([...listOfTasks]);
-
-  useEffect(() => {
-    setTasksList([...listOfTasks]);
-  }, [listOfTasks]);
-
   const [highlightedTask, setHighlightedTask] = useState<OneTask | undefined>(
     undefined
   );
@@ -68,15 +64,17 @@ const TasksListSortable = ({
   const handleDragStart = useCallback((event: DragStartEvent) => {
     setActiveId(event.active.id);
   }, []);
+
   const handleDragEnd = useCallback((event: DragEndEvent) => {
+    console.log('drag end', event)
     const active = event.active;
     const overId = event.over ? event.over.id : null;
 
     if (active.id !== overId) {
-      console.log("active id: ", active.id, "overId: ", overId);
       setTasksList((items) => {
         const oldIndex = items.findIndex((item) => item.id === active.id);
         const newIndex = items.findIndex((item) => item.id === overId);
+        console.log("active id: ", active.id, "overId: ", overId);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
@@ -172,11 +170,11 @@ const TasksListSortable = ({
         onDragCancel={handleDragCancel}
       >
         <SortableContext
-          items={tasksList.map((task) => task.id as UniqueIdentifier)}
+          items={listOfTasks.map((task) => task.id as UniqueIdentifier)}
           strategy={rectSortingStrategy}
         >
           <Grid columns={5}>
-            {tasksList.map((task: OneTask) => {
+            {listOfTasks.map((task: OneTask) => {
               return (
                 <div key={task.id} onClick={() => handleHighlightTask(task)}>
                   <SortableItemForGrid

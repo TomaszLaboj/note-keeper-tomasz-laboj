@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { type OneTask } from "../new-components/oneTask";
 import {
   DndContext,
@@ -7,6 +7,7 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
+  // DragOverlay,
   type DragStartEvent,
   type DragEndEvent,
   type UniqueIdentifier,
@@ -28,18 +29,16 @@ interface ListOfTasksProps {
     taskId: number | undefined,
     status: "In progress" | "Done"
   ) => void;
+  setTasksList: React.Dispatch<React.SetStateAction<OneTask[]>>;
 }
 
 const ArchivedTasksList = ({
   listOfTasks,
   deleteTask,
   updateStatus,
+  setTasksList,
 }: ListOfTasksProps) => {
-  const [tasksList, setTasksList] = useState<OneTask[]>([...listOfTasks]);
 
-  useEffect(() => {
-    setTasksList([...listOfTasks]);
-  }, [listOfTasks]);
 
   const [highlightedTask, setHighlightedTask] = useState<OneTask | undefined>(
     undefined
@@ -85,42 +84,6 @@ const ArchivedTasksList = ({
     setHighlightedTask(task);
   };
 
-  const handleUpdateTitle = (value: string) => {
-    setEdited(true);
-    setHighlightedTask((prev) => {
-      if (prev) {
-        return {
-          ...prev,
-          title: value,
-        };
-      }
-    });
-  };
-
-  const handleUpdateDescription = (value: string) => {
-    setEdited(true);
-    setHighlightedTask((prev) => {
-      if (prev) {
-        return {
-          ...prev,
-          description: value,
-        };
-      }
-    });
-  };
-
-  const handleUpdateDueDate = (value: string) => {
-    setEdited(true);
-    setHighlightedTask((prev) => {
-      if (prev) {
-        return {
-          ...prev,
-          due_date: value,
-        };
-      }
-    });
-  };
-
   const updateTaskStatus = (
     taskId: number | undefined,
     status: "In progress" | "Done"
@@ -152,11 +115,11 @@ const ArchivedTasksList = ({
         onDragCancel={handleDragCancel}
       >
         <SortableContext
-          items={tasksList.map((task) => task.id as UniqueIdentifier)}
+          items={listOfTasks.map((task) => task.id as UniqueIdentifier)}
           strategy={rectSortingStrategy}
         >
           <Grid columns={5}>
-            {tasksList.map((task: OneTask) => {
+            {listOfTasks.map((task: OneTask) => {
               return (
                 <div key={task.id} onClick={() => handleHighlightTask(task)}>
                   <SortableItemForGrid
@@ -178,6 +141,9 @@ const ArchivedTasksList = ({
             })}
           </Grid>
         </SortableContext>
+        {/* <DragOverlay adjustScale style={{ transformOrigin: '0 0 ' }}>
+                {activeId ? <Item id={activeId.toString()} isDragging /> : null}
+            </DragOverlay> */}
       </DndContext>
 
       <div className="notes-list-container-sortable"></div>

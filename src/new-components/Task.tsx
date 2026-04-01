@@ -4,7 +4,7 @@ interface TaskInterface {
   id: number | undefined;
   title: string;
   description: string;
-  dateAdded: string;
+  dateAdded?: string;
   dueDate: string | undefined;
   status: string;
   deleteTask: (taskId: number | undefined) => void;
@@ -18,7 +18,6 @@ const Task = ({
   id,
   title,
   description,
-  dateAdded,
   dueDate,
   status,
   deleteTask,

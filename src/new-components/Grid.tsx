@@ -3,7 +3,7 @@ type GridProps = {
   children: React.ReactNode;
 };
 
-const Grid = ({ children, columns }: GridProps) => {
+const Grid = ({ children }: GridProps) => {
   return <div className="grid-container">{children}</div>;
 };
 

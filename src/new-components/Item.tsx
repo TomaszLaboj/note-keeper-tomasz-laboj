@@ -39,7 +39,6 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
     },
     ref
   ) => {
-    console.log(isDragging);
     const inlineStyles: CSSProperties = {
       opacity: withOpacity ? "0.5" : "1",
       height: "100%",
