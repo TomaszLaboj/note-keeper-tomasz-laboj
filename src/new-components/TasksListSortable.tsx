@@ -54,8 +54,6 @@ const TasksListSortable = ({
   const [activeId, setActiveId] = useState<string | number | null>(null);
 
   const sensors = useSensors(
-    useSensor(MouseSensor),
-    useSensor(TouchSensor),
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 2,
@@ -86,7 +84,6 @@ const TasksListSortable = ({
   }, []);
 
   const handleHighlightTask = (task: OneTask) => {
-    console.log("handle highlight task: ", task);
     setHighlightedTask(task);
     setHighlightedTaskOriginal({ ...task });
   };
