@@ -3,8 +3,6 @@ import { type OneTask } from "../new-components/oneTask";
 import {
   DndContext,
   closestCenter,
-  MouseSensor,
-  TouchSensor,
   useSensor,
   useSensors,
   DragOverlay,

@@ -5,8 +5,6 @@ import isEqual from "lodash.isequal";
 import {
   DndContext,
   closestCenter,
-  MouseSensor,
-  TouchSensor,
   useSensor,
   useSensors,
   DragOverlay,
