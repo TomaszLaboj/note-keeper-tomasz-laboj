@@ -19,11 +19,11 @@ function App() {
   const today = new Date().toISOString().substring(0, 10);
   const [listOfActiveTasks, setListOfActiveTasks] = useState<OneTask[]>([]);
   const [listOfArchivedTasks, setListOfArchivedTasks] = useState<OneTask[]>([]);
-  console.log(listOfActiveTasks);
   const [titleAndDescription, setTitleAndDescription] =
     useState<TitleAndDescription>({ title: "", description: "" });
   const [dueDate, setDueDate] = useState<string>("");
   const [showArchived, setShowArchive] = useState(false);
+  
   const getTasksList = () => {
     axios
       .get(`${url}/todos/`)
@@ -73,7 +73,6 @@ function App() {
     if (!task) {
       task = listOfArchivedTasks.find((task) => task.id === taskId);
     }
-    console.log(task);
     if (task) {
       axios
         .put(`${url}/todos/${task.id}`, {

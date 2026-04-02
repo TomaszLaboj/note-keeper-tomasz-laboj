@@ -39,8 +39,8 @@ const AddNewTask = ({
         setExpanded(false);
       }
     };
+    
     const handleKeyPress = (e: KeyboardEvent) => {
-      console.log(e.key);
       if (e.key === "Escape") {
         if (title || description) {
           handleAddTask();

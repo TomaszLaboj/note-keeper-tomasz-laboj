@@ -75,7 +75,6 @@ const TasksListSortable = ({
       setTasksList((items) => {
         const oldIndex = items.findIndex((item) => item.id === active.id);
         const newIndex = items.findIndex((item) => item.id === overId);
-        console.log("active id: ", active.id, "overId: ", overId);
         return arrayMove(items, oldIndex, newIndex);
       });
     }
@@ -132,7 +131,6 @@ const TasksListSortable = ({
     taskId: number | undefined,
     status: "In progress" | "Done"
   ) => {
-    console.log(taskId);
     updateStatus(taskId, status);
     if (highlightedTask) {
       setHighlightedTask(undefined);

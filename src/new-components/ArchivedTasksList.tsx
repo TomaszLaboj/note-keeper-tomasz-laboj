@@ -67,7 +67,6 @@ const ArchivedTasksList = ({
     const overId = event.over ? event.over.id : null;
 
     if (active.id !== overId) {
-      console.log("active id: ", active.id, "overId: ", overId);
       setTasksList((items) => {
         const oldIndex = items.findIndex((item) => item.id === active.id);
         const newIndex = items.findIndex((item) => item.id === overId);
