@@ -1,5 +1,6 @@
 <h1>Note Keeper</h1>
 A simple note keeping app inspired by Google Keep.
+<br>
 <a href="https://github.com/TomaszLaboj/note-keeper-tomasz-laboj">Git hub repo</a>
 <a href="https://note-keeper-tomasz-laboj.netlify.app/">Deployment on Netlify</a>
 <h2>Tech Stack</h2>
