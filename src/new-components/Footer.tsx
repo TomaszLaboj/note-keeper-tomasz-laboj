@@ -5,7 +5,7 @@ export function Footer() {
       <p className="footer">
         2023 - 2026 Tomasz Laboj
         <br /> GitHub repos:{" "}
-        <a href="https://github.com/TomaszLaboj/to-do-list-tomasz-laboj">
+        <a href="https://github.com/TomaszLaboj/note-keeper-tomasz-laboj">
           front end
         </a>{" "}
         and{" "}
