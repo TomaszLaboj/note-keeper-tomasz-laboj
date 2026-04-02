@@ -3,6 +3,10 @@ body {
   font-family: "DejaVu Sans", sans-serif;
 }
 
+.header {
+  display: flex;
+}
+
 .note-container {
   margin: 32px auto 16px auto;
   padding: 12px 16px;
