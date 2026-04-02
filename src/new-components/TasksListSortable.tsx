@@ -22,7 +22,7 @@ import {
 } from "@dnd-kit/sortable";
 import Grid from "./Grid";
 import SortableItemForGrid from "./SortableItemForGrid";
-import { findTask } from "./ArchivedTasksList";
+import { findTask } from "../utils/findTask";
 
 interface ListOfTasksProps {
   listOfTasks: OneTask[];
@@ -58,7 +58,7 @@ const TasksListSortable = ({
     useSensor(TouchSensor),
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 5,
+        distance: 2,
       },
     })
   );
@@ -68,7 +68,6 @@ const TasksListSortable = ({
   }, []);
 
   const handleDragEnd = useCallback((event: DragEndEvent) => {
-    console.log('drag end', event)
     const active = event.active;
     const overId = event.over ? event.over.id : null;
 
@@ -81,7 +80,7 @@ const TasksListSortable = ({
       });
     }
     setActiveId(null);
-  }, []);
+  }, [setTasksList]);
 
   const handleDragCancel = useCallback(() => {
     setActiveId(null);
