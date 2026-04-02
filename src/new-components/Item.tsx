@@ -44,6 +44,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
       height: "100%",
       transformOrigin: "50% 50%",
       display: "flex",
+      touchAction: "none",
       flexDirection: "column",
       borderRadius: "10px",
       cursor: isDragging ? "all-scroll" : "",

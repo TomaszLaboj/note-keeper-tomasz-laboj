@@ -3,8 +3,6 @@ import { type OneTask } from "../new-components/oneTask";
 import {
   DndContext,
   closestCenter,
-  MouseSensor,
-  TouchSensor,
   useSensor,
   useSensors,
   DragOverlay,
@@ -49,8 +47,6 @@ const ArchivedTasksList = ({
   const [activeId, setActiveId] = useState<string | number | null>(null);
 
   const sensors = useSensors(
-    useSensor(MouseSensor),
-    useSensor(TouchSensor),
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 5,
