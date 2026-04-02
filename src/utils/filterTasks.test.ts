@@ -1,4 +1,5 @@
 import { filterTasksAsInprogress, returnArchivedTasks } from "./filterTasks";
+import { test, expect } from "vitest";
 
 test("filters tasks to show only in progress", () => {
   expect(

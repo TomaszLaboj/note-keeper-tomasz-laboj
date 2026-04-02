@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { OneTask } from "../components/oneTask";
+import { type OneTask } from "../new-components/oneTask";
 import Task from "./Task";
 import TaskEditor from "./TaskEditor";
 import isEqual from "lodash/isEqual";
@@ -35,7 +35,7 @@ const TasksList = ({
 
   const handleUpdateTitle = (value: string) => {
     setEdited(true);
-    setHighlightedTask((prev) => {
+    setHighlightedTask((prev: OneTask | undefined) => {
       if (prev) {
         return {
           ...prev,
@@ -47,7 +47,7 @@ const TasksList = ({
 
   const handleUpdateDescription = (value: string) => {
     setEdited(true);
-    setHighlightedTask((prev) => {
+    setHighlightedTask((prev: OneTask | undefined) => {
       if (prev) {
         return {
           ...prev,
@@ -59,7 +59,7 @@ const TasksList = ({
 
   const handleUpdateDueDate = (value: string) => {
     setEdited(true);
-    setHighlightedTask((prev) => {
+    setHighlightedTask((prev: OneTask | undefined) => {
       if (prev) {
         return {
           ...prev,

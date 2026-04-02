@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect, useRef } from "react";
+import { type SyntheticEvent, useEffect, useRef } from "react";
 import { BiTrash, BiArchiveIn, BiArchiveOut } from "react-icons/bi";
 
 interface TaskEditorInterface {
